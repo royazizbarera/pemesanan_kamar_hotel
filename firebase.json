@@ -1,0 +1,6 @@
+{
+    "hosting": {
+        "site": "pemesanan-kamar-hotel-appl-4",
+        "public": "build/web"
+    }
+}
