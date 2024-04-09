@@ -4,6 +4,7 @@ class KamarModel {
   double hargaSewa;
   bool disewa;
   String tipeKamar;
+  String fotoURL;
 
   // Konstruktor
   KamarModel({
@@ -11,6 +12,7 @@ class KamarModel {
     required this.hargaSewa,
     required this.disewa,
     required this.tipeKamar,
+    required this.fotoURL,
   });
 
   // Method untuk mengonversi objek KamarModel menjadi Map<String, dynamic>
@@ -20,6 +22,7 @@ class KamarModel {
       'hargaSewa': hargaSewa,
       'disewa': disewa,
       'tipeKamar': tipeKamar,
+      'fotoURL': fotoURL,
     };
   }
 
@@ -30,6 +33,7 @@ class KamarModel {
       hargaSewa: map['hargaSewa'],
       disewa: map['disewa'],
       tipeKamar: map['tipeKamar'],
+      fotoURL: map['fotoURL'],
     );
   }
 }

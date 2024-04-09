@@ -13,18 +13,23 @@ class _SearchBarMaterialState extends State<SearchBarMaterial> {
     return SearchAnchor(
       builder: (context, controller) {
         return SearchBar(
-          leading: const Icon(Icons.search),
-          padding: const MaterialStatePropertyAll<EdgeInsets>(
-              EdgeInsets.symmetric(horizontal: 16.0)),
+          backgroundColor:
+              MaterialStatePropertyAll(Theme.of(context).colorScheme.surface),
+          leading: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+            child: Icon(Icons.search),
+          ),
+          // padding: const MaterialStatePropertyAll<EdgeInsets>(
+          //     EdgeInsets.symmetric(horizontal: 16.0)),
           controller: controller,
-          // onTap: () => controller.openView(),
-          // onChanged: (_) => controller.openView(),
+          onTap: () => controller.openView(),
+          onChanged: (_) => controller.openView(),
           hintText: 'Cari hotel',
           onSubmitted: (String value) {},
-          elevation: const MaterialStatePropertyAll<double>(1.0),
+          elevation: const MaterialStatePropertyAll<double>(0.0),
           shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(100),
               side: const BorderSide(
                 width: 0.5,
               ),
