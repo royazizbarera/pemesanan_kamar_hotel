@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart'
     show Firebase, FirebaseOptions;
 import 'package:flutter/material.dart';
 import 'package:pemesanan_kamar_hotel/page/home_page.dart';
+import 'package:pemesanan_kamar_hotel/page/pemesanan/pemesanan_page.dart';
 
 void main() async {
   await Firebase.initializeApp(
@@ -21,10 +22,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme:
-            ThemeData(colorSchemeSeed: const Color.fromARGB(255, 24, 157, 171)),
-        debugShowCheckedModeBanner: false,
-        home: const HomePage());
+    return SafeArea(
+      child: MaterialApp(
+          theme: ThemeData(
+              colorSchemeSeed: const Color.fromARGB(255, 24, 157, 171)),
+          debugShowCheckedModeBanner: false,
+          home: const HomePage()),
+    );
   }
 }

@@ -1,14 +1,20 @@
+import 'package:pemesanan_kamar_hotel/enum/status_pembayaran.dart';
+import 'package:uuid/uuid.dart';
+
 class PembayaranModel {
   // Pembayaran {local}
-  String idPembayaran;
+  String? idPembayaran;
   double jumlahPembayaran;
-  String statusPembayaran;
+  String? statusPembayaran;
 
   PembayaranModel({
-    required this.idPembayaran,
+    this.idPembayaran,
     required this.jumlahPembayaran,
-    required this.statusPembayaran,
-  });
+    this.statusPembayaran,
+  }) {
+    idPembayaran ??= const Uuid().v4();
+    statusPembayaran ??= StatusPembayaran.menungguPembayaran.status;
+  }
 
   // Method untuk mengonversi objek PembayaranModel menjadi Map<String, dynamic>
   Map<String, dynamic> toMap() {
@@ -27,4 +33,5 @@ class PembayaranModel {
       statusPembayaran: map['statusPembayaran'],
     );
   }
+
 }

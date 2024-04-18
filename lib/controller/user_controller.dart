@@ -42,17 +42,17 @@ class UserController {
   }
 
   // Add tamu to user
-  Future<StatusCode> addTamuToUser(String email, TamuModel tamu) async {
-    try {
-      await _firestore
-          .collection(_penggunaCollection)
-          .doc(email)
-          .update({
-            'tamu': FieldValue.arrayUnion([tamu.toMap()]),
-          });
-      return StatusCode.success(message: 'Berhasil menambahkan tamu.');
-    } catch (e) {
-      throw StatusCode.failure(message: e.toString());
-    }
-  }
+  // Future<StatusCode> addTamuToUser(String email, TamuModel tamu) async {
+  //   try {
+  //     await _firestore
+  //         .collection(_penggunaCollection)
+  //         .doc(email)
+  //         .update({
+  //           'tamu': FieldValue.arrayUnion([tamu.toMap()]),
+  //         });
+  //     return StatusCode.success(message: 'Berhasil menambahkan tamu.');
+  //   } catch (e) {
+  //     throw StatusCode.failure(message: e.toString());
+  //   }
+  // }
 }

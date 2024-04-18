@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pemesanan_kamar_hotel/model/kamar_model.dart';
+import 'package:pemesanan_kamar_hotel/model/pemesanan_model.dart';
+import 'package:pemesanan_kamar_hotel/model/pengguna_model.dart';
+import 'package:pemesanan_kamar_hotel/page/pemesanan/pemesanan_page.dart';
 
 // @immutable
 class KamarCard extends StatelessWidget {
@@ -12,16 +15,16 @@ class KamarCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String sewa = kamar.disewa ? 'Penuh' : 'Kosong';
+    String sewa = kamar.disewa ? 'Penuh' : 'Tersedia';
     String harga = NumberFormat.currency(locale: 'id').format(kamar.hargaSewa);
     return Card(
       clipBehavior: Clip.hardEdge,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
-            height: 160,
+            // Ukuran gambar kartu
+            height: 180,
             width: double.infinity,
             child: parallax
                 ? Flow(
@@ -56,7 +59,7 @@ class KamarCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Row(
                     children: [
@@ -85,9 +88,10 @@ class KamarCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Text('Kapasitas Kamar : ${kamar.kapasitasKamar}'),
                   Chip(
                     color: MaterialStatePropertyAll(
-                      sewa == 'Kosong'
+                      sewa == 'Tersedia'
                           ? const Color.fromARGB(255, 0, 158, 182)
                           : null,
                     ),
@@ -97,7 +101,7 @@ class KamarCard extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w600,
-                        color: sewa == 'Kosong'
+                        color: sewa == 'Tersedia'
                             ? Theme.of(context).colorScheme.onPrimary
                             : Colors.black,
                         letterSpacing: 1.5,
@@ -116,7 +120,18 @@ class KamarCard extends StatelessWidget {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PemesananPage(
+                                pemesanan: PemesananModel.random(
+                                  kamar: kamar,
+                                  pemesan: PenggunaModel.random(),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
                         style: ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(
                               Theme.of(context).colorScheme.primary),
