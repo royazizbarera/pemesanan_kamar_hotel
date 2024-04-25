@@ -1,6 +1,9 @@
 import 'package:firebase_core/firebase_core.dart'
     show Firebase, FirebaseOptions;
 import 'package:flutter/material.dart';
+import 'package:pemesanan_kamar_hotel/model/kamar_model.dart';
+import 'package:pemesanan_kamar_hotel/model/pemesanan_model.dart';
+import 'package:pemesanan_kamar_hotel/model/pengguna_model.dart';
 import 'package:pemesanan_kamar_hotel/page/home_page.dart';
 import 'package:pemesanan_kamar_hotel/page/pemesanan/pemesanan_page.dart';
 
@@ -19,15 +22,26 @@ void main() async {
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
+  Widget pemesananPage() {
+    return PemesananPage(
+      pemesanan: PemesananModel.random(
+          kamar: KamarModel.random(), pemesan: PenggunaModel.random()),
+    );
+  }
+
+  Widget homePage() {
+    return const HomePage();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp(
-          theme: ThemeData(
-              colorSchemeSeed: const Color.fromARGB(255, 24, 157, 171)),
-          debugShowCheckedModeBanner: false,
-          home: const HomePage()),
+        theme:
+            ThemeData(colorSchemeSeed: const Color.fromARGB(255, 24, 157, 171)),
+        debugShowCheckedModeBanner: false,
+        home: pemesananPage(),
+      ),
     );
   }
 }
